@@ -11,5 +11,12 @@ api.post(
   [md_auth.asureAuth, md_upload],
   CourseController.createCourse
 );
+api.get("/course", CourseController.getCourses);
+api.patch(
+  "/course/:id",
+  [md_auth.asureAuth, md_upload],
+  CourseController.updateCourse
+);
+api.delete("/course/:id", [md_auth.asureAuth], CourseController.deleteCourse);
 
 export default api;
