@@ -10,6 +10,7 @@ import authRoutes from "./router/auth.js";
 import userRoutes from "./router/user.js";
 import menuRoutes from "./router/menu.js";
 import courseRoutes from "./router/course.js";
+import postRoutes from "./router/post.js";
 
 // Configure Body Parse
 app.use(express.urlencoded({ extended: true }));
@@ -26,3 +27,4 @@ app.use(`/api/${API_VERSION}`, authRoutes);
 app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}`, menuRoutes);
 app.use(`/api/${API_VERSION}`, courseRoutes);
+app.use(`/api/${API_VERSION}`, postRoutes);

@@ -18,16 +18,33 @@ async function createCourse(req, res) {
     res.status(201).send(courseStored);
   } catch (error) {
     console.error(error);
-    res.status(400).send({ msg: "Error al crear el curso" });
+    res.status(500).send({ msg: "Error al crear el curso" });
   }
 }
 
 async function getCourses(req, res) {
   try {
     const { page = 1, limit = 10 } = req.query;
+
+    // Convertir y validar los valores de page y limit
+    const parsedPage = parseInt(page, 10);
+    const parsedLimit = parseInt(limit, 10);
+
+    // Verificar que page y limit sean números válidos y positivos
+    if (
+      isNaN(parsedPage) ||
+      parsedPage <= 0 ||
+      isNaN(parsedLimit) ||
+      parsedLimit <= 0
+    ) {
+      return res.status(400).send({
+        msg: "Los parámetros 'page' y 'limit' deben ser números positivos",
+      });
+    }
+
     const options = {
-      page: parseInt(page),
-      limit: parseInt(limit),
+      page: parsedPage,
+      limit: parsedLimit,
     };
 
     const courses = await Course.paginate({}, options);
@@ -35,7 +52,7 @@ async function getCourses(req, res) {
     res.status(200).send(courses);
   } catch (error) {
     console.error(error);
-    res.status(400).send({ msg: "Error al obtener los cursos" });
+    res.status(500).send({ msg: "Error al obtener los cursos" });
   }
 }
 
@@ -44,7 +61,7 @@ async function updateCourse(req, res) {
     const { id } = req.params;
     const courseData = req.body;
 
-    if (req.files && req.files.miniature) {
+    if (req.files.miniature) {
       const imagePath = image.getFilePath(req.files.miniature);
       courseData.miniature = imagePath;
     }
