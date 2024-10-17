@@ -11,6 +11,7 @@ import userRoutes from "./router/user.js";
 import menuRoutes from "./router/menu.js";
 import courseRoutes from "./router/course.js";
 import postRoutes from "./router/post.js";
+import newslatterRoutes from "./router/newsletter.js";
 
 // Configure Body Parse
 app.use(express.urlencoded({ extended: true }));
@@ -28,3 +29,4 @@ app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}`, menuRoutes);
 app.use(`/api/${API_VERSION}`, courseRoutes);
 app.use(`/api/${API_VERSION}`, postRoutes);
+app.use(`/api/${API_VERSION}`, newslatterRoutes);

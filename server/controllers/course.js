@@ -88,7 +88,7 @@ async function deleteCourse(req, res) {
     if (!courseDeleted)
       return res.status(404).send({ msg: "Curso no encontrado" });
 
-    res.status(200).send({ msg: "Curso eliminado" });
+    res.status(200).send({ msg: "Curso eliminado con éxito" });
   } catch (error) {
     console.error(error);
     res.status(500).send({ msg: "Error al eliminar el curso" });
