@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import image from "../utils/image.js";
 
-async function getMe(req, res) {
+const getMe = async (req, res) => {
   try {
     const { user_id } = req.user;
 
@@ -15,9 +15,9 @@ async function getMe(req, res) {
     console.error(error);
     return res.status(500).send({ msg: "Error del servidor" });
   }
-}
+};
 
-async function getUsers(req, res) {
+const getUsers = async (req, res) => {
   try {
     const { active } = req.query;
 
@@ -34,9 +34,9 @@ async function getUsers(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener los usuarios" });
   }
-}
+};
 
-async function createUser(req, res) {
+const createUser = async (req, res) => {
   try {
     const { password } = req.body;
     const user = new User({ ...req.body, active: false });
@@ -61,9 +61,9 @@ async function createUser(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al crear el usuario" });
   }
-}
+};
 
-async function updateUser(req, res) {
+const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
     const userData = req.body;
@@ -96,9 +96,9 @@ async function updateUser(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al actualizar el usuario" });
   }
-}
+};
 
-async function deleteUser(req, res) {
+const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -115,7 +115,7 @@ async function deleteUser(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al eliminar al usuario" });
   }
-}
+};
 
 export default {
   getMe,

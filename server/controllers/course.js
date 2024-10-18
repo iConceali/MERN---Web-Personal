@@ -1,7 +1,7 @@
 import Course from "../models/course.js";
 import image from "../utils/image.js";
 
-async function createCourse(req, res) {
+const createCourse = async (req, res) => {
   try {
     const course = new Course(req.body);
 
@@ -20,9 +20,9 @@ async function createCourse(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al crear el curso" });
   }
-}
+};
 
-async function getCourses(req, res) {
+const getCourses = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
 
@@ -54,9 +54,9 @@ async function getCourses(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener los cursos" });
   }
-}
+};
 
-async function updateCourse(req, res) {
+const updateCourse = async (req, res) => {
   try {
     const { id } = req.params;
     const courseData = req.body;
@@ -77,9 +77,9 @@ async function updateCourse(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al actualizar el curso" });
   }
-}
+};
 
-async function deleteCourse(req, res) {
+const deleteCourse = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -93,6 +93,6 @@ async function deleteCourse(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al eliminar el curso" });
   }
-}
+};
 
 export default { createCourse, getCourses, updateCourse, deleteCourse };

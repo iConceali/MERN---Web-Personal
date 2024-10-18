@@ -1,6 +1,6 @@
 import Menu from "../models/menu.js";
 
-async function createMenu(req, res) {
+const createMenu = async (req, res) => {
   try {
     const menu = new Menu(req.body);
 
@@ -11,9 +11,9 @@ async function createMenu(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al crear el menu" });
   }
-}
+};
 
-async function getMenus(req, res) {
+const getMenus = async (req, res) => {
   try {
     const { active } = req.query;
 
@@ -34,9 +34,9 @@ async function getMenus(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener los Menus" });
   }
-}
+};
 
-async function updateMenu(req, res) {
+const updateMenu = async (req, res) => {
   try {
     const { id } = req.params;
     const menuData = req.body;
@@ -55,9 +55,9 @@ async function updateMenu(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al actualizar el menu" });
   }
-}
+};
 
-async function deleteMenu(req, res) {
+const deleteMenu = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -74,6 +74,6 @@ async function deleteMenu(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al eliminar el menu" });
   }
-}
+};
 
 export default { createMenu, getMenus, updateMenu, deleteMenu };

@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "../utils/jwt.js";
 
-async function register(req, res) {
+const register = async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
 
@@ -30,9 +30,9 @@ async function register(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Error al crear el usuario" });
   }
-}
+};
 
-async function login(req, res) {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -64,9 +64,9 @@ async function login(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error del servidor" });
   }
-}
+};
 
-async function refreshAccessToken(req, res) {
+const refreshAccessToken = async (req, res) => {
   try {
     const { token } = req.body;
 
@@ -91,5 +91,5 @@ async function refreshAccessToken(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error del servidor" });
   }
-}
+};
 export default { register, login, refreshAccessToken };

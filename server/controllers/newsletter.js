@@ -1,6 +1,6 @@
 import Newsletter from "../models/newsletter.js";
 
-async function suscribeEmail(req, res) {
+const suscribeEmail = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -27,9 +27,9 @@ async function suscribeEmail(req, res) {
     console.error(error);
     res.status(400).send({ msg: "Email ya registrado" });
   }
-}
+};
 
-async function getEmails(req, res) {
+const getEmails = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
 
@@ -64,9 +64,9 @@ async function getEmails(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener los emails" });
   }
-}
+};
 
-async function deleteEmail(req, res) {
+const deleteEmail = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -80,6 +80,6 @@ async function deleteEmail(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al eliminar el email" });
   }
-}
+};
 
 export default { suscribeEmail, getEmails, deleteEmail };

@@ -1,7 +1,7 @@
 import Post from "../models/post.js";
 import image from "../utils/image.js";
 
-async function createPost(req, res) {
+const createPost = async (req, res) => {
   try {
     const post = new Post(req.body);
     post.created_at = new Date();
@@ -21,9 +21,9 @@ async function createPost(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al crear el post" });
   }
-}
+};
 
-async function getPosts(req, res) {
+const getPosts = async (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
 
@@ -61,9 +61,9 @@ async function getPosts(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener los posts" });
   }
-}
+};
 
-async function updatePost(req, res) {
+const updatePost = async (req, res) => {
   try {
     const { id } = req.params;
     const postData = req.body;
@@ -84,9 +84,9 @@ async function updatePost(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al actualizar el post" });
   }
-}
+};
 
-async function deletePost(req, res) {
+const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -100,9 +100,9 @@ async function deletePost(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al eliminar el post" });
   }
-}
+};
 
-async function getPost(req, res) {
+const getPost = async (req, res) => {
   try {
     const { path } = req.params;
 
@@ -115,6 +115,6 @@ async function getPost(req, res) {
     console.error(error);
     res.status(500).send({ msg: "Error al obtener el post" });
   }
-}
+};
 
 export default { createPost, getPosts, updatePost, deletePost, getPost };
