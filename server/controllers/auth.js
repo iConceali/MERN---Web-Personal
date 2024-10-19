@@ -25,7 +25,7 @@ const register = async (req, res) => {
 
     // Guardar el usuario
     const userStorage = await user.save();
-    res.status(200).send(userStorage);
+    return res.status(201).send(userStorage);
   } catch (error) {
     console.error(error);
     res.status(400).send({ msg: "Error al crear el usuario" });
@@ -55,7 +55,7 @@ const login = async (req, res) => {
     } else if (!userStore.active) {
       res.status(401).send({ msg: "Usuario no autorizado o no activo" });
     } else {
-      res.status(200).send({
+      return res.status(200).send({
         access: jwt.createAccessToken(userStore),
         refresh: jwt.createRefreshToken(userStore),
       });
@@ -84,7 +84,7 @@ const refreshAccessToken = async (req, res) => {
       return res.status(404).send({ msg: "Usuario no encontrado" });
 
     // Generar y enviar el nuevo AccessToken
-    res.status(200).send({
+    return res.status(200).send({
       accessToken: jwt.createAccessToken(userStorage),
     });
   } catch (error) {
