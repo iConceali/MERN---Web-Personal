@@ -10,7 +10,7 @@ const getMe = async (req, res) => {
     if (!response)
       return res.status(400).send({ msg: "Usuario no encontrado" });
 
-    return res.status(200).send({ response });
+    return res.status(200).send(response);
   } catch (error) {
     console.error(error);
     return res.status(500).send({ msg: "Error del servidor" });
